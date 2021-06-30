@@ -1,0 +1,20 @@
+version: '3.3'
+
+networks:
+  app_network:
+    external:
+      name: postgres_default
+
+services:
+  postgresDB:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - app_network
+    expose:
+      - 5432
